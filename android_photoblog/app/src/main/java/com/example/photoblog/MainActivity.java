@@ -38,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     // AVD 에뮬레이터에서 호스트 PC의 127.0.0.1로 접근하려면 10.0.2.2 사용
     //private static final String UPLOAD_URL = "http://127.0.0.1:8000/api_root/Post/";
-    private static final String UPLOAD_URL = "http://10.0.2.2:8000/api_root/Post/";
+    //private static final String UPLOAD_URL = "http://10.0.2.2:8000/api_root/Post/";
+    private static final String UPLOAD_URL = "https://kevinc02.pythonanywhere.com/api_root/Post/";
     Uri imageUri = null;
 
     private final ExecutorService executorService = Executors.newSingleThreadExecutor();
@@ -136,17 +137,17 @@ public class MainActivity extends AppCompatActivity {
                 URL url = new URL(UPLOAD_URL);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("POST");
-                // 본인 계정의 DRF 토큰으로 교체 필요 — 현재 값은 admin/test1234 계정 토큰
-                connection.setRequestProperty("Authorization", "JWT 0f8e4d508d7e9ca904b5254c530b55d510efc63a");
+                // PythonAnywhere kevinc02 계정의 DRF 토큰
+                connection.setRequestProperty("Authorization", "JWT e3bedcfec09ba6b1711d6262ed6336def24fd9ea");
                 connection.setRequestProperty("Content-Type", "application/json");
                 connection.setDoOutput(true);
 
                 JSONObject jsonObject = new JSONObject();
-                jsonObject.put("author", 1);
-                jsonObject.put("title", "안드로이드-REST API 테스트");
+                jsonObject.put("author", 2);
+                jsonObject.put("title", "안드로이드-REST API 테스트 (PythonAnywhere)");
                 jsonObject.put("text", "안드로이드로 작성된 REST API 테스트 입력 입니다.");
-                jsonObject.put("created_date", "2024-06-03T18:34:00+09:00");
-                jsonObject.put("published_date", "2024-06-03T18:34:00+09:00");
+                jsonObject.put("created_date", "2026-06-19T22:45:00+09:00");
+                jsonObject.put("published_date", "2026-06-19T22:45:00+09:00");
                 //jsonObject.put("image", imageUrl);
 
                 outputStreamWriter = new OutputStreamWriter(connection.getOutputStream());

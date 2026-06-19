@@ -2,9 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from blog.api_views import router as blog_api_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api_root/', include(blog_api_router.urls)),
     path('', include('blog.urls')),
 ]
 
